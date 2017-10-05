@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Show User {{context.id}}</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+
+            <form action='/' method=''>
+                {% csrf_token %}
+
+                <div class='row'>
+                    <div class='tweleve columns'>
+                        <h1>User {{context.id}}</h1>
+                    </div>
+                    <div class='four columns'>
+                        <p>Full Name: {{context.first_name}} {{context.last_name}}</p>
+                    </div>
+                    <div class='four columns'>
+                        <p>Email: {{context.email}}</p>
+                    </div>
+                    <div class='four columns'>
+                        <p>Created at: {{context.created_at}}</p>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='tweleve columns'>
+                        <a href="/users/edit/{{context.id}}">Edit</a>
+                    </div>
+                    <div class='tweleve columns'>
+                        <a href="/users/delete{{context.id}}">Delete</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

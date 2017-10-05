@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>New User</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+            <div class='row'>
+                <form action="{% url 'users:create' %}" method='POST'>
+                    <div class='six columns'>
+                        <h1>Add a new user</h1>
+                        {%csrf_token%}
+                        {{form}}
+                    </div>
+                    <div class='six columns'>
+                        <h1>:)</h1>
+                    </div>
+                    <div class='six columns'>
+                        <!-- Display Errors! -->
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class='twelve columns'>
+                        <input class='button-primary' type='submit' value='Create User'>      
+                    </div>          
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+

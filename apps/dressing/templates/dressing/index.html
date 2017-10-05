@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Splash Welcome</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+        <style>
+            #header{
+                background-color: lightgrey;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+            <form action="{% url 'login:login'%}" method='POST'>
+                {% csrf_token %}
+                <div class='row' id='header'>
+                    <div class='tweleve columns'>
+                        <h2>Welcome to the Test</h2>
+                        <h5>We're going to build a cool application using a MVC Framework! This application
+                            built with the Village88 folks!
+                        </h5>
+                    </div>
+                    <div class='row'>
+                        <div class='tweleve columns'>
+                            <input class='button-primary' type='submit' value='start'>
+                        </div>
+                    </div>
+                </div>
+            </form>            
+            <div class='row'>
+                <div class='four columns'>
+                    <h4>Manage Users</h4>
+                    <p>Using this application you'll learn how to add, remove and edit users for the application.</p>
+                </div>
+                <div class='four columns'>
+                    <h4>Leave Messages</h4>      
+                    <p>Users will be able to leave a message to another user using this application.</p>                  
+                </div>
+                <div class='four columns'>
+                    <h4>Edit User Information</h4>
+                    <p>Admins will be able to edit another user's information (email adress, first name, last
+                        name, etc).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

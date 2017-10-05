@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Deleted User {{context.id}}</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+            <form action='/dash/delete' method='POST'>
+                <h1>User {{context.id}} Deleted!</h1>
+                <div class='row'>
+                    <div class='tweleve columns'>
+                        <a href="{% url 'dash:root' %}">Return to user dashboard</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Edit User {{context.number}}</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+            <div class='row'>
+                <form action="/dash/update/{{num}}" method='POST'>
+                    <div class='twelve columns'>
+                        <h1>Edit User {{context.number}}</h1>
+                        {%csrf_token%}
+                        {{form}}
+                    </div>
+                    <div class='twelve columns'>
+                        <input class='button-primary' type='submit' value='Update'>      
+                    </div>          
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

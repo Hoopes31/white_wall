@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Dashboard</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class="container" style='padding:1em'>
+            <div class='row'>
+                <div class='tweleve columns'>
+                    <h1>Users</h1>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='one column'>
+                    <h5>id</h5>
+                <hr>
+                </div>
+                <div class='two columns'>
+                    <h5>Full Name</h5>
+                <hr>
+                </div>
+                <div class='three columns'>
+                    <h5>Email</h5>
+                <hr>
+                </div>
+                <div class='two columns'>
+                    <h5>Created At</h5>
+                <hr>
+                </div>
+                <div class='two columns'>
+                    <h5>Privileges</h5>
+                <hr>
+                </div>
+            </div>
+            {% for user in users %}
+            <div class='row'>
+                <div class='one column'>
+                    <p>{{user.id}}</p>
+                </div>
+                <div class='two columns'>
+                    <a href="/dash/show/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                </div>
+                <div class='three columns'>
+                    <p>{{user.email}}</p>
+                </div>
+                <div class='two columns'>
+                    <p>{{user.date_joined}}</p>
+                </div>
+                <div class='two columns'>
+                    {%if user.is_staff %}
+                    <p>Admin</p>
+                    {%else%}
+                    <p>User</p>
+                    {%endif%}
+                </div>
+            </div>
+            {% endfor %}
+            <div class='row'>
+                <div class='tweleve columns'>
+                    <hr>
+                    <a href="{% url 'login:sign_up' %}">Add New User</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
