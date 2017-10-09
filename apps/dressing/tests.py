@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Article, Annotation
+from .views import index
 from datetime import date
+from django.shortcuts import redirect, reverse
 
 # Create your tests here.
 
@@ -24,3 +26,11 @@ class AnnotationTestCase(TestCase):
         self.assertEqual(self.annotation.article, self.article)
         self.assertEqual(self.annotation.user, self.user)
         self.assertEqual(self.annotation.category, 'question')
+
+# Views Tests
+
+class IndexTestCase(TestCase):
+    def test_response(self):
+        response = self.client.get(reverse('dressing:welcome'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'dressing/index.html')
