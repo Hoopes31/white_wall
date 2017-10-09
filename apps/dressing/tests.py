@@ -16,14 +16,11 @@ class ArticleTestCase(TestCase):
 
 class AnnotationTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testname', email='test@test.com', password='testpassword')
+        self.user = User.objects.create(username='testname', email='test@test.com', password='testpassword')
         self.article = Article.objects.create(url='http://testurl.com')
-        Annotation.objects.create(body='This is a test annotation.', article=self.article, user=self.user, article_location='testlocation')
+        self.annotation = Annotation.objects.create(body='This is a test annotation.', article=self.article, user=self.user, category='question')
     def test_annotation_article_user_fields(self):
-        annotation = Annotation.objects.get(id=1)
-        self.assertEqual(annotation.body, 'This is a test annotation.')
-        self.assertEqual(annotation.article, self.article)
-        self.assertEqual(annotation.user, self.user)
-        self.assertEqual(annotation.article_location, 'testlocation')
-        self.assertContains(self.user.annotations, annotation)
-        self.assertContains(self.article.annotations, annotation)
+        self.assertEqual(self.annotation.body, 'This is a test annotation.')
+        self.assertEqual(self.annotation.article, self.article)
+        self.assertEqual(self.annotation.user, self.user)
+        self.assertEqual(self.annotation.category, 'question')
