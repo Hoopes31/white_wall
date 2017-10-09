@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -52,7 +52,7 @@ def create_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('login:welcome', name = username)
+            return redirect(reverse('dressing:welcome'))
     
     else:
         return render(request, 'login/sign_up.html', {'form':form})
@@ -65,7 +65,7 @@ def auth(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('login:welcome', name = username)
+            return redirect(reverse('dressing:welcome'))
     
     messages.error(request, 'Login Invalid')
     return render(request, 'login/login.html', {'form':form})
