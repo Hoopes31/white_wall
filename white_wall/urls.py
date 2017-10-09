@@ -9,6 +9,7 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     url(r'^', include('apps.user.urls', namespace='login')),
+    url(r'^dashboard', include('apps.dressing.urls', namespace='dressing')),
     url(r'^api', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
