@@ -4,3 +4,4 @@ __pycache__
 geckodriver.log
 .vscode
 .DS_store
+*.txt
