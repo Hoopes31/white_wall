@@ -22,9 +22,12 @@ def get_or_create_article(request):
         else:
             article = articles[0]
             print article.url
-            return redirect(reverse('dressing:show', kwargs={'article_id': article.id}))
+            return redirect(reverse('dressing:show', kwargs={'article_id': article.id, 'url': url}))
     else:
         return redirect(reverse('dressing:welcome'))
 
-def show(request, article_id):
-    return render(request, 'dressing/white_wall.html')
+def show(request, article_id, url):
+    context = {
+        'url': url,
+    }
+    return render(request, 'dressing/white_wall.html', context)
