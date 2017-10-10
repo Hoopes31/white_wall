@@ -15,14 +15,13 @@
         <div class='container' style='padding:1em'>          
             <div class='row'>
                 <div class='six columns'>
-                    <form action=>
-                        <!-- {%csrf_token%} -->
+                    <form action="{% url 'dressing:get_or_create_article' %}" method="post">
+                        {%csrf_token%}
                     <h4>Choose an Article to Annotate</h4>
-                    <select id = "myList">
-                            <option value = "1">one</option>
-                            <option value = "2">two</option>
-                            <option value = "3">three</option>
-                            <option value = "4">four</option>
+                    <select name="url">
+                            {% for page in pages %}
+                                <option value="{{ page.url }}">{{ page.heading }}</option>
+                            {% endfor %}
                     </select>
                     <input class='button-primary' type='submit' value='Choose Article'> 
                 </form>
