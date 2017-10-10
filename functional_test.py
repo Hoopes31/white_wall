@@ -82,14 +82,30 @@ class SiteIsUp(unittest.TestCase):
         error = self.browser.find_element_by_class_name('errorlist')
         self.assertIsNotNone(error)
 
-        # User can user the in app browser to navigate the internet
-        
+    def test_main_white_wall_page(self):
+        self.browser.get('http://localhost:8000/white_wall')
+        self.assertIn('White Wall', self.browser.title)
+
+        # User can use the in app browser to navigate the internet
+        white_wall_browser = self.browser.find_element_by_id('wall_browser')
+        self.assertIsNotNone(white_wall_browser)
+
+        # User is able to navigate to any website through the in app browser. 
+
         # User can select annotations and read their contents
+        annotation = self.browser.find_element_by_class_name('annotation')
+        self.assertIsNotNone(annotation)
 
-        # User can upload answers to annotations
+        # User can upload new annotations
+        add_annotation = self.browser.find_element_by_xpath('//input[@value="Add Annotation"]')
+        self.assertIsNotNone(add_annotation)
 
-        # User can click answer links
+        # If phrase is already annotated a user can upload annotations to exisiting annotations
+        
+        # User can browse answer links
 
+        # User can add answers to annotations
+        
         # User can view article summary
 
 if __name__ == '__main__':
