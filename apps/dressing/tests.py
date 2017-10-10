@@ -4,6 +4,7 @@ from .models import Article, Annotation
 from .views import index
 from datetime import date
 from django.shortcuts import redirect, reverse
+from .pages_dictionary import pages
 
 # Create your tests here.
 
