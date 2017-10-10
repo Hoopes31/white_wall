@@ -22,7 +22,7 @@ def get_or_create_article(request):
         else:
             article = articles[0]
             print article.url
-            return redirect(reverse('dressing:show', kwargs={'article_id': article.id, 'url': url}))
+            return redirect(reverse('dressing:show', kwargs={'article_id': article.id}))
     else:
         return redirect(reverse('dressing:welcome'))
 
