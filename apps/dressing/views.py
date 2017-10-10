@@ -26,8 +26,9 @@ def get_or_create_article(request):
     else:
         return redirect(reverse('dressing:welcome'))
 
-def show(request, article_id, url):
+def show(request, article_id):
+    article = Article.objects.get(id=article_id)
     context = {
-        'url': url,
+        'url': article.url,
     }
     return render(request, 'dressing/white_wall.html', context)
