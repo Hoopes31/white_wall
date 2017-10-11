@@ -39,6 +39,7 @@
             document.onclick=function(e){
             }
         </script>
+          
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -61,7 +62,22 @@
                             </div>
                         </div>     
             <div class='row'>
-                <div class='two columns' id='annotation_container'>
+                    <div class = "twelve columns">
+                            <script>
+                                    (function() {
+                                      var cx = '006287871620644527440:7npwbxgzgxw';
+                                      var gcse = document.createElement('script');
+                                      gcse.type = 'text/javascript';
+                                      gcse.async = true;
+                                      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                      var s = document.getElementsByTagName('script')[0];
+                                      s.parentNode.insertBefore(gcse, s);
+                                    })();
+                                  </script>
+                                  <gcse:search></gcse:search>
+    
+                                </div>
+                <div class='three columns' id='annotation_container'>
                     <h5>Annotations</h5>
                     <hr>
                     <form action="{% url 'dressing:add_annotation' article_id=article_id %}" method='POST'>
@@ -87,7 +103,7 @@
                         {% endfor %}
                         {% endif %}
                 </div>
-                <div class='ten columns'>
+                <div class='eight columns'>
                     <!-- <object type='text/html' data='http://www.django-rest-framework.org' width=100%;
                     height=100%;></object> -->
                     <iframe 
@@ -102,6 +118,11 @@
                         height=100%;>
                     </iframe>  
                 </div>
+
+
+
+
+                   </div>
             </div>
         </div>
     </body>
