@@ -34,9 +34,13 @@ def show(request, article_id):
     AnnotationForm = AddAnnotation()
     ResponseForm = Comment()
     article = Article.objects.get(id=article_id)
+    annotations = article.annotations.all()
+    # comments = annotations.comments.all()
     context = {
         'article_id': article_id,
         'url': article.url,
+        'annotations': annotations,
+        # 'comments': comments,
         'AnnotationForm': AnnotationForm,
         'ResponseForm': ResponseForm,
     }
@@ -44,8 +48,7 @@ def show(request, article_id):
 
 def add_annotation(request, article_id):
     user = request.user
-    logging.info(user)
-    logging.info(article_id)
+    article = Article.objects.get(id=article_id)
 
     form = AddAnnotation(request.POST)
     if form.is_valid():
@@ -55,6 +58,6 @@ def add_annotation(request, article_id):
             body=form['body'], 
             category=form['category'],
             user = user,
-            article = article_id,
+            article = article,
         )
     return redirect(reverse('dressing:show', kwargs={'article_id': article_id}))

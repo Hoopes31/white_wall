@@ -33,28 +33,28 @@
         <div class='container' style='padding:1em'>          
             <div class='row'>
                 <div class='two columns' id='annotation_container'>
-                    <h4>Annotations</h4>
                     <form action="{% url 'dressing:add_annotation' article_id=article_id %}" method='POST'>
                         {%csrf_token%}
                         {{AnnotationForm}}
                         <input class='button-primary' type='submit' value='Annotate!'>
                     </form>
+                    <p>Annotations</p>
+                    <hr>
                     {% if annotations %}
                     {% for annotation in annotations %}
-                    <ul>
-                        {{annotation.subject}}
-                        {{annotation.body}}
-                        {% if annotation.comments %}
-                        {% for comment in annotation.comments %}
-                            {{comment}}
-                        </ul>
+                        <p>{{annotation.subject}}</p>
+                        <p>{{annotation.body}}</p>
+                        <!-- {% if comments %}
+                        {% for comment in comments %}
+                            {{comment}} -->
+                        <!-- {% endfor %}
+                        {% endif %} -->
                         {% endfor %}
                         {% endif %}
-                        <h4>Comment</h4>
+                        <p>Comment</p>
+                        <hr>
                         {%csrf_token%}
                         {{ResponseForm}}
-                    {% endfor %}
-                    {% endif %}
                     <!-- <ul>
                         <li>Question 1</li>
                         <p>Answer Answer Answer Answer Answer Answer</p>
