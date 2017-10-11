@@ -1,11 +1,13 @@
 from django.shortcuts import render, reverse, redirect
 from .pages_dictionary import pages
+
 from .models import Article, Annotation, Comment
 from .forms import AddAnnotation, AddComment
 from django.contrib.auth.decorators import login_required
 
 import logging
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
+from .services import get_stacked
 
 # Create your views here.
 @login_required
