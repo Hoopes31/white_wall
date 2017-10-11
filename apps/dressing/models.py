@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -11,6 +10,7 @@ class Article(models.Model):
     date_modified = models.DateField(auto_now=True)
 
 class Annotation(models.Model):
+    subject = models.CharField(max_length=255)
     body = models.TextField()
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='annotations')
     user = models.ForeignKey(User, related_name='annotations')
