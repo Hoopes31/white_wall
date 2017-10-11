@@ -57,3 +57,5 @@ def delete(request, num):
 @staff_member_required(login_url='/login/')
 def delete_check(request, num):
     return render(request, 'dash/delete_check.html', {'num':num})
+
+
