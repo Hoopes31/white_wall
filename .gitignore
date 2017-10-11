@@ -5,3 +5,4 @@ geckodriver.log
 .vscode
 .DS_store
 *.txt
+*/migrations
