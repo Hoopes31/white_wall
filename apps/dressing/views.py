@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, redirect
 from .pages_dictionary import pages
 from .models import Article, Annotation
 from .forms import AddAnnotation, Comment
+from .services import get_stacked
 
 # Create your views here.
 def index(request):

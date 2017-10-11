@@ -12,5 +12,11 @@ def get_stacked(lst):
         else:
             query += lst[i] + ';'
     questions = SITE.fetch('questions', sort='votes', tagged=query)
-    pprint.pprint(questions)
-    return questions
+    titles_and_links = []
+    for item in questions['items']:
+        titles_and_links.append({
+            'title': item['title'],
+            'link': item['link']
+        })
+    pprint.pprint(titles_and_links)
+    return titles_and_links
