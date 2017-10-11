@@ -3,6 +3,9 @@ from .pages_dictionary import pages
 from .models import Article, Annotation
 from .forms import AddAnnotation, Comment
 
+import logging
+logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
+
 # Create your views here.
 def index(request):
     context = {
@@ -32,9 +35,26 @@ def show(request, article_id):
     ResponseForm = Comment()
     article = Article.objects.get(id=article_id)
     context = {
+        'article_id': article_id,
         'url': article.url,
         'AnnotationForm': AnnotationForm,
         'ResponseForm': ResponseForm,
     }
     return render(request, 'dressing/white_wall.html', context)
 
+def add_annotation(request, article_id):
+    user = request.user
+    logging.info(user)
+    logging.info(article_id)
+
+    form = AddAnnotation(request.POST)
+    if form.is_valid():
+        form = form.cleaned_data
+        new_annotation = Annotation.objects.create(
+            subject=form['subject'], 
+            body=form['body'], 
+            category=form['category'],
+            user = user,
+            article = article_id,
+        )
+    return redirect(reverse('dressing:show', kwargs={'article_id': article_id}))
