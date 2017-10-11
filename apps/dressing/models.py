@@ -18,4 +18,9 @@ class Annotation(models.Model):
     date_created = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now=True)
 
-
+class Comment(models.Model):
+    body = models.TextField()
+    annotation = models.ForeignKey(Annotation, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, related_name='comments')
+    date_created = models.DateField(auto_now_add=True)
+    date_modified = models.DateField(auto_now=True)
