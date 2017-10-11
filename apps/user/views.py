@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.decorators import login_required
@@ -24,7 +24,8 @@ def sign_up(request):
     form = UserForm()
     return render(request, 'login/sign_up.html', {'form':form})
 
-def logout(request):
+def logoutUser(request):
+    logout(request)
     return redirect('login:login')
 
 # Action Views

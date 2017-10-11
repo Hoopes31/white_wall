@@ -33,13 +33,10 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>  
             $(document).ready(function(){
-                doc = $('iframe').contents()
-                console.log(doc.find('data'))
             })
         </script>  
         <script type='text/javascript'>
             document.onclick=function(e){
-                console.log(document.domain)
             }
         </script>
         <meta charset="UTF-8">
@@ -65,35 +62,30 @@
                         </div>     
             <div class='row'>
                 <div class='two columns' id='annotation_container'>
-                    <h4>Annotations</h4>
-                    {%csrf_token%}
-                    {{AnnotationForm}}
-                    <h4>Comment</h4>
-                    {{ResponseForm}}
+                    <h5>Annotations</h5>
+                    <hr>
+                    <form action="{% url 'dressing:add_annotation' article_id=article_id %}" method='POST'>
+                        {%csrf_token%}
+                        {{AnnotationForm}}
+                        <input class='button' type='submit' value='Annotate!'>
+                    </form>
                     {% if annotations %}
                     {% for annotation in annotations %}
-                    <ul>
-                        {{annotation.subject}}
-                        {{annotation.body}}
-                        {% if annotation.comments %}
-                        {% for comment in annotation.comments %}
+                        <a>{{annotation.subject}}</a>
+                        <p>{{annotation.body}}</p>
+                        {% if comments %}
+                        {% for comment in comments %}
                             {{comment}}
-                        </ul>
                         {% endfor %}
                         {% endif %}
-                    {% endfor %}
-                    {% endif %}
-                    <!-- <ul>
-                        <li>Question 1</li>
-                        <p>Answer Answer Answer Answer Answer Answer</p>
-                        <li>Question 2</li>
-                        <p>Answer Answer Answer Answer Answer Answer</p>
-                        <li>Question 3</li>
-                        <p>Answer Answer Answer Answer Answer Answer</p>
-                        <li>Question 4</li>
-                        <p>Answer Answer Answer Answer Answer Answer</p>
-                    </ul> -->
-                    <!-- for each annotation on show annotation & answers -->
+                        <p>Comment</p>
+                        <form action="{% url 'dressing:add_comment' article_id=article_id annotation_id=annotation.id %}" method='POST'>
+                            {%csrf_token%}
+                            {{CommentForm}}
+                            <input class='button' type='submit' value='Comment!'>
+                        </form>
+                        {% endfor %}
+                        {% endif %}
                 </div>
                 <div class='ten columns'>
                     <!-- <object type='text/html' data='http://www.django-rest-framework.org' width=100%;
