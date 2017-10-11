@@ -73,9 +73,9 @@
                     {% for annotation in annotations %}
                         <a>{{annotation.subject}}</a>
                         <p>{{annotation.body}}</p>
-                        {% if comments %}
-                        {% for comment in comments %}
-                            {{comment}}
+                        {% if annotation.comments %}
+                        {% for comment in annotation.comments.all %}
+                            {{comment.body}}
                         {% endfor %}
                         {% endif %}
                         <p>Comment</p>
