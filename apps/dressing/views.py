@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 
 import logging
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
-from .services import get_stacked
 
 # Create your views here.
 @login_required
