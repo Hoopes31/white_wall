@@ -2,7 +2,6 @@
     <head>
         <title>Splash Welcome</title>
         <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
-        <link rel='import' href='https://www.google.com'>
         <style>
             #header{
                 background-color: lightgrey;
@@ -14,17 +13,70 @@
                 border: 2px black grey;
             }
         </style>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>  
+            $(document).ready(function(){
+                doc = $('iframe').contents()
+                console.log(doc.find('data'))
+            })
+        </script>  
+        <script type='text/javascript'>
+            document.onclick=function(e){
+                console.log(document.domain)
+            }
+        </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
     </head>
     <body>
         <div class='container' style='padding:1em'>          
             <div class='row'>
-                <div class='three columns' id='annotation_container'>
-                    CONTAIN ANNOTATE
+                <div class='two columns' id='annotation_container'>
+                    <h4>Annotations</h4>
+                    {%csrf_token%}
+                    {{AddAnnotation}}
+                    <h4>Comment</h4>
+                    {{ResponseForm}}
+                    {% if annotations %}
+                    {% for annotation in annotations %}
+                    <ul>
+                        {{annotation.subject}}
+                        {{annotation.body}}
+                        {% if annotation.comments %}
+                        {% for comment in annotation.comments %}
+                            {{comment}}
+                        </ul>
+                        {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <!-- <ul>
+                        <li>Question 1</li>
+                        <p>Answer Answer Answer Answer Answer Answer</p>
+                        <li>Question 2</li>
+                        <p>Answer Answer Answer Answer Answer Answer</p>
+                        <li>Question 3</li>
+                        <p>Answer Answer Answer Answer Answer Answer</p>
+                        <li>Question 4</li>
+                        <p>Answer Answer Answer Answer Answer Answer</p>
+                    </ul> -->
                     <!-- for each annotation on show annotation & answers -->
                 </div>
-                <div class='eight columns'>
-                    <h4>browser here ---></h4>
-                    <!-- locked browser in eight column position       -->
+                <div class='ten columns'>
+                    <!-- <object type='text/html' data='http://www.django-rest-framework.org' width=100%;
+                    height=100%;></object> -->
+                    <iframe 
+                        onLoad=""
+                        sandbox="allow-scripts allow-same-origin allow-forms" 
+                        src="{{url}}" 
+                        name="targetframe" 
+                        id="iframe"
+                        scrolling='yes'
+                        style='overflow:hidden;height:100%;width:100%'
+                        width=100%;
+                        height=100%;>
+                    </iframe>  
                 </div>
             </div>
         </div>
