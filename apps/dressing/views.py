@@ -28,12 +28,12 @@ def get_or_create_article(request):
         return redirect(reverse('dressing:welcome'))
 
 def show(request, article_id):
-    AddAnnotation = AddAnnotation()
+    AnnotationForm = AddAnnotation()
     ResponseForm = Comment()
     article = Article.objects.get(id=article_id)
     context = {
         'url': article.url,
-        'AddAnnotation': AddAnnotation,
+        'AnnotationForm': AnnotationForm,
         'ResponseForm': ResponseForm,
     }
     return render(request, 'dressing/white_wall.html', context)
