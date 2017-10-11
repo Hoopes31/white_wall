@@ -35,7 +35,9 @@
                 <div class='two columns' id='annotation_container'>
                     <h4>Annotations</h4>
                     {%csrf_token%}
-                    {{form}}
+                    {{AddAnnotation}}
+                    <h4>Comment</h4>
+                    {{ResponseForm}}
                     {% if annotations %}
                     {% for annotation in annotations %}
                     <ul>
