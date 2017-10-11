@@ -5,12 +5,29 @@
         <style>
             #header{
                 background-color: lightgrey;
-                border-radius: 5px;
-                padding: 10px;
-                margin-bottom: 25px;
+                border-radius: 0.375em;
+                padding: 0.635em;
+                margin-bottom: 1.563em;
+            }
+            #nav {
+	            margin: 0.813em 0 0 2.47em;
+                }
+ 
+            #nav ul li {
+                display: inline;
+	            margin: 0 1.25em 0 0;
+	            margin-bottom: 8.125em;
+            }
+ 
+            #nav a {
+	            text-decoration: none;
+            }
+ 
+            #nav a:hover {
+	            text-decoration: underline;
             }
             #annotation_container{
-                border: 2px black grey;
+                border: 0.125em black grey;
             }
         </style>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -30,7 +47,22 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     </head>
     <body>
-        <div class='container' style='padding:1em'>          
+        <div class='container' style='padding:1em'>
+                <div class = 'row'>
+                        <div class="three columns">
+                                <h3>White Wall</h3>
+                            </div>
+                            <div class="six columns">
+                                    <p> </p>
+                                </div>
+                            <div id="nav" class="three columns">
+                                <ul>
+                                    <li><a href="#"> </a></li>
+                                    <li><a href="{% url 'dressing:welcome' %}">Home</a></li>
+                                    <li><a href="/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>     
             <div class='row'>
                 <div class='two columns' id='annotation_container'>
                     <form action="{% url 'dressing:add_annotation' article_id=article_id %}" method='POST'>
