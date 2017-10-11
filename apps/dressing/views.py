@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 from .pages_dictionary import pages
 from .models import Article, Annotation
+from .forms import AddAnnotation
 
 # Create your views here.
 def index(request):
@@ -27,8 +28,10 @@ def get_or_create_article(request):
         return redirect(reverse('dressing:welcome'))
 
 def show(request, article_id):
+    form = AddAnnotation()
     article = Article.objects.get(id=article_id)
     context = {
         'url': article.url,
+        'form': form,
     }
     return render(request, 'dressing/white_wall.html', context)
