@@ -9,7 +9,7 @@ class AddAnnotation(forms.Form):
         (TRANSLATION, 'Translation')
     )
 
-    subject=forms.CharField(min_length=3, max_length=25, widget=forms.TextInput(attrs={'placeholder':'Quoted Text', 'class':'u-full-width'}), label='')
+    subject=forms.CharField(min_length=3, max_length=25, widget=forms.TextInput(attrs={'placeholder':'Max Length 25 Characters', 'class':'u-full-width'}), label='Subject')
     body=forms.CharField(min_length=3, widget=forms.TextInput(attrs={'placeholder':'Body', 'class':'u-full-width'}), label='')
     category=forms.ChoiceField(widget=forms.Select(attrs={'placeholder':'Response Type', 'class':'u-full-width'}), choices=ANNOTATION_CHOICES, label='')
 
