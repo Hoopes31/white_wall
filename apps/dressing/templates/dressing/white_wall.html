@@ -29,6 +29,33 @@
             #annotation_container{
                 border: 0.125em black grey;
             }
+            button.accordion {
+            
+            color: #444;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 80%;
+            transition: 0.4s;
+            overflow-x: hidden;
+            padding: 0 0 0 0;
+            }
+            .Question {
+                background-color: rgb(253, 77, 77);
+            }
+            .Translation{
+                background-color: rgb(113, 113, 255);
+            }
+            button.accordion.active, button.accordion:hover {
+            color: rgb(207, 245, 69);            
+            }
+            div.panel {
+            padding: 0 30px;
+            display: none;
+            background-color: white;
+            }
         </style>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>  
@@ -39,7 +66,7 @@
             document.onclick=function(e){
             }
         </script>
-          
+ 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -98,19 +125,22 @@
                     </form>
                     {% if annotations %}
                     {% for annotation in annotations %}
-                        <a>{{annotation.subject}}</a>
-                        <p>{{annotation.body}}</p>
-                        {% if annotation.comments %}
-                        {% for comment in annotation.comments.all %}
-                            {{comment.body}}
-                        {% endfor %}
-                        {% endif %}
-                        <p>Comment</p>
-                        <form action="{% url 'dressing:add_comment' article_id=article_id annotation_id=annotation.id %}" method='POST'>
-                            {%csrf_token%}
-                            {{CommentForm}}
-                            <input class='button' type='submit' value='Comment!'>
-                        </form>
+                        <button class="accordion {{annotation.category}}">{{annotation.subject}}</button>
+                        <div class="panel">
+                            <h5>{{annotation.body}}</h5>
+                            <p>{{annotation.category}}</p>
+                            {% if annotation.comments %}
+                            {% for comment in annotation.comments.all %}
+                                <p>{{comment.body}}</p>
+                            {% endfor %}
+                            {% endif %}
+                            <p>Comment</p>
+                            <form action="{% url 'dressing:add_comment' article_id=article_id annotation_id=annotation.id %}" method='POST'>
+                                {%csrf_token%}
+                                {{CommentForm}}
+                                <input class='button' type='submit' value='Comment!'>
+                            </form>
+                        </div>
                         {% endfor %}
                         {% endif %}
                 </div>
@@ -136,5 +166,21 @@
                    </div>
             </div>
         </div>
+        <script>
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+                
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].onclick = function(){
+                        this.classList.toggle("active");
+                        var panel = this.nextElementSibling;
+                        if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            panel.style.display = "block";
+                        }
+                    }
+                }
+        </script>
     </body>
 </html>
