@@ -51,6 +51,7 @@ def show(request, article_id):
         'comments': comments,
         'AnnotationForm': AnnotationForm,
         'CommentForm': CommentForm,
+        'pages': pages,
     }
     return render(request, 'dressing/white_wall.html', context)
 
