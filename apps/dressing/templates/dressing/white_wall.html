@@ -126,13 +126,13 @@
                                 <p>{{comment.body}}</p>
                             {% endfor %}
                             {% endif %}
+                            <p>Comment</p>
+                            <form action="{% url 'dressing:add_comment' article_id=article_id annotation_id=annotation.id %}" method='POST'>
+                                {%csrf_token%}
+                                {{CommentForm}}
+                                <input class='button' type='submit' value='Comment!'>
+                            </form>
                         </div>
-                        <p>Comment</p>
-                        <form action="{% url 'dressing:add_comment' article_id=article_id annotation_id=annotation.id %}" method='POST'>
-                            {%csrf_token%}
-                            {{CommentForm}}
-                            <input class='button' type='submit' value='Comment!'>
-                        </form>
                         {% endfor %}
                         {% endif %}
                 </div>
