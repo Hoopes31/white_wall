@@ -29,6 +29,26 @@
             #annotation_container{
                 border: 0.125em black grey;
             }
+            button.accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+            }
+            button.accordion.active, button.accordion:hover {
+            background-color: #ccc; 
+            }
+            div.panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            }
         </style>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>  
@@ -39,7 +59,7 @@
             document.onclick=function(e){
             }
         </script>
-          
+ 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -98,8 +118,10 @@
                     </form>
                     {% if annotations %}
                     {% for annotation in annotations %}
-                        <a>{{annotation.subject}}</a>
-                        <p>{{annotation.body}}</p>
+                        <button class="accordion">{{annotation.subject}}</button>
+                        <div class="panel">
+                            <p>{{annotation.body}}</p>
+                        </div>
                         {% if annotation.comments %}
                         {% for comment in annotation.comments.all %}
                             {{comment.body}}
@@ -136,5 +158,21 @@
                    </div>
             </div>
         </div>
+        <script>
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+                
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].onclick = function(){
+                        this.classList.toggle("active");
+                        var panel = this.nextElementSibling;
+                        if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            panel.style.display = "block";
+                        }
+                    }
+                }
+        </script>
     </body>
 </html>
