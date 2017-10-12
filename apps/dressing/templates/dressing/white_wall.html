@@ -67,7 +67,6 @@
                         <button class="accordion {{annotation.category}}">{{annotation.subject}}</button>
                         <div class="panel">
                             <h5>{{annotation.body}}</h5>
-                            <p>{{annotation.category}}</p>
                             {% if annotation.comments %}
                             {% for comment in annotation.comments.all %}
                                 <p>{{comment.body}}</p>
