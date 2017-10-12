@@ -15,11 +15,8 @@ class SiteIsUp(unittest.TestCase):
 
     def test_root_page_loads_properly(self):
         self.browser.get('http://localhost:8000')
-
-        # User sees login as the root page
         self.assertIn('Login', self.browser.title)
 
-        # User can navigate to 'sign up'
         sign_up = self.browser.find_element_by_link_text('Sign Up!')
         self.assertIsNotNone(sign_up)
         sign_up.click()
@@ -37,25 +34,10 @@ class SiteIsUp(unittest.TestCase):
         invalid = self.browser.find_element_by_class_name('error')
         self.assertIsNotNone(invalid)
 
-    def test_login_success(self):
-        self.browser.get('http://localhost:8000')
-        username = self.browser.find_element_by_id('id_username')
-        password = self.browser.find_element_by_id('id_password')
-        submit = self.browser.find_element_by_xpath('//input[@type="submit"]')
-
-        username.send_keys('admin')
-        password.send_keys('testing123')
-        submit.click()
-
-        self.assertIn('Splash Welcome', self.browser.title)
-
     def sign_up_root_loads_properly(self):
         self.browser.get('http://localhost:8000/sign_up')
-
-        # User sees sign up page
         self.assertIn('Sign Up!', self.browser.title)
 
-        # User can navigate to 'login'
         login = self.browser.find_element_by_link_text('Login')
         self.assertIsNotNone(login)
         login.click()
@@ -76,37 +58,65 @@ class SiteIsUp(unittest.TestCase):
         email.send_keys('admin@admin.com')
         password.send_keys('testing123')
         confirm_password.send_keys('testing123')
-
         submit.click()
 
         error = self.browser.find_element_by_class_name('errorlist')
         self.assertIsNotNone(error)
 
-    def test_main_white_wall_page(self):
-        self.browser.get('http://localhost:8000/white_wall')
-        self.assertIn('White Wall', self.browser.title)
+    def test_login_success_welcome(self):
+        self.browser.get('http://localhost:8000')
+        username = self.browser.find_element_by_id('id_username')
+        password = self.browser.find_element_by_id('id_password')
+        submit = self.browser.find_element_by_xpath('//input[@type="submit"]')
 
-        # User can use the in app browser to navigate the internet
-        white_wall_browser = self.browser.find_element_by_id('wall_browser')
+        username.send_keys('admin')
+        password.send_keys('testing123')
+        submit.click()
+
+        self.assertIn('Splash Welcome', self.browser.title)
+        logout = self.browser.find_element_by_xpath('//a[@href="/logout"]')
+        logout.click()
+
+    def test_login_white_wall(self):
+        self.browser.get('http://localhost:8000')
+        username = self.browser.find_element_by_id('id_username')
+        password = self.browser.find_element_by_id('id_password')
+        submit = self.browser.find_element_by_xpath('//input[@type="submit"]')
+
+        username.send_keys('admin')
+        password.send_keys('testing123')
+        submit.click()
+
+        selectArticle = self.browser.find_element_by_xpath('//input[@type="submit"]')
+        selectArticle.click()
+
+        # User can use the in app browser to navigate the docs
+        white_wall_browser = self.browser.find_element_by_id('iframe')
+        url = white_wall_browser.get_attribute('src')
         self.assertIsNotNone(white_wall_browser)
-
-        # User is able to navigate to any website through the in app browser. 
-
-        # User can select annotations and read their contents
-        annotation = self.browser.find_element_by_class_name('annotation')
-        self.assertIsNotNone(annotation)
+        self.assertIn('www.django', url)
 
         # User can upload new annotations
-        add_annotation = self.browser.find_element_by_xpath('//input[@value="Add Annotation"]')
+        add_annotation = self.browser.find_element_by_xpath('//input[@value="Annotate!"]')
         self.assertIsNotNone(add_annotation)
-
-        # If phrase is already annotated a user can upload annotations to exisiting annotations
         
-        # User can browse answer links
-
         # User can add answers to annotations
-        
+        add_comment = self.browser.find_element_by_xpath('//input[@value="Comment!"]')
+        self.assertIsNotNone(add_comment)
+
+        # User can select a different article to browse
+        change_article = self.browser.find_element_by_xpath('//input[@value="Choose Article"]')
+        change_article.click()
+
+        # User can search articles by custom google search
+        submit_search = self.browser.find_element_by_xpath('//input[@type="image"]')
+        google_search = self.browser.find_element_by_id('gsc-i-id1')
+        google_search.send_keys('Django: Build in User model')
+        submit_search.click()
+
         # User can view article summary
+        summary = self.browser.find_element_by_id('annotation_summary')
+        self.assertIsNotNone(summary)
 
 if __name__ == '__main__':
     unittest.main()
