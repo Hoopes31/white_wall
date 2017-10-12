@@ -2,31 +2,9 @@
     <head>
         <title>Splash Welcome</title>
         <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
-        <style>
-            #header{
-                background-color: lightgrey;
-                border-radius: 0.375em;
-                padding: 0.635em;
-                margin-bottom: 1.563em;
-                }
-            #nav {
-	            margin: 0.813em 0 0 2.47em;
-                }
- 
-            #nav ul li {
-                display: inline;
-	            margin: 0 1.25em 0 0;
-	            margin-bottom: 8.125em;
-            }
- 
-            #nav a {
-	            text-decoration: none;
-            }
- 
-            #nav a:hover {
-	            text-decoration: underline;
-            }
-        </style>
+        {% load static %}
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'dressing/style.css' %}" />
     </head>
     <body>
         <div class='container' style='padding:1em'>

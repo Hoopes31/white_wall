@@ -2,12 +2,9 @@
     <head>
         <title>Login</title>
         <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
-        <style>
-            .error{
-                color: red;
-                list-style-type: none; 
-            }
-        </style>
+        {% load static %}
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'user/style.css' %}" />
     </head>
     <body>
         <div class='container' style='padding:1em'>
