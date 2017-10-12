@@ -50,7 +50,7 @@
                         <div class="three columns">
                                 <h3>White Wall</h3>
                             </div>
-                            <div class="six columns">
+                            <div class="four columns">
                                     <p> </p>
                                 </div>
                             <div id="nav" class="three columns">
@@ -59,6 +59,17 @@
                                     <li><a href="{% url 'dressing:welcome' %}">Home</a></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
+                            </div>
+                            <div class='two columns'>
+                                    <form action="{% url 'dressing:get_or_create_article' %}" method="post">
+                                            {%csrf_token%}
+                                        <select name="url" class="dropdown-item">
+                                                {% for page in pages %}
+                                                    <option value="{{ page.url }}">{{ page.heading }}</option>
+                                                {% endfor %}
+                                        </select>
+                                        <input class='button-primary dropdown-item' type='submit' value='Choose Article'> 
+                                    </form>
                             </div>
                         </div>     
             <div class='row'>
@@ -118,8 +129,8 @@
                         height=100%;>
                     </iframe>  
                 </div>
-
-
+                
+                
 
 
                    </div>
