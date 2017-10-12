@@ -2,71 +2,10 @@
     <head>
         <title>White Wall</title>
         <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
-        <style>
-            #header{
-                background-color: lightgrey;
-                border-radius: 0.375em;
-                padding: 0.635em;
-                margin-bottom: 1.563em;
-            }
-            #nav {
-	            margin: 0.813em 0 0 2.47em;
-                }
- 
-            #nav ul li {
-                display: inline;
-	            margin: 0 1.25em 0 0;
-	            margin-bottom: 8.125em;
-            }
- 
-            #nav a {
-	            text-decoration: none;
-            }
- 
-            #nav a:hover {
-	            text-decoration: underline;
-            }
-            #annotation_container{
-                border: 0.125em black grey;
-            }
-            button.accordion {
-            
-            color: #444;
-            cursor: pointer;
-            width: 100%;
-            border: none;
-            text-align: center;
-            outline: none;
-            font-size: 80%;
-            transition: 0.4s;
-            overflow-x: hidden;
-            padding: 0 0 0 0;
-            }
-            .Question {
-                background-color: rgb(253, 77, 77);
-            }
-            .Translation{
-                background-color: rgb(113, 113, 255);
-            }
-            button.accordion.active, button.accordion:hover {
-            color: rgb(207, 245, 69);            
-            }
-            div.panel {
-            padding: 0 30px;
-            display: none;
-            background-color: white;
-            }
-        </style>
+        {% load static %}
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'dressing/style.css' %}" />
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script>  
-            $(document).ready(function(){
-            })
-        </script>  
-        <script type='text/javascript'>
-            document.onclick=function(e){
-            }
-        </script>
- 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -145,8 +84,6 @@
                         {% endif %}
                 </div>
                 <div class='eight columns'>
-                    <!-- <object type='text/html' data='http://www.django-rest-framework.org' width=100%;
-                    height=100%;></object> -->
                     <iframe 
                         onLoad=""
                         sandbox="allow-scripts allow-same-origin allow-forms" 
